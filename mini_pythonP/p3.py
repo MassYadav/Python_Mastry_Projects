@@ -96,7 +96,8 @@ def get_bet():
                 print(f"Bet must be between ${MIN_BET} and ${MAX_BET}.")
         else:
             print("Invalid input. Please enter a number.")
-def main():
+
+def spin():
     print("Welcome to the Slot Machine!")
     balance = deposit()
     lines = get_number_of_lines()
@@ -115,5 +116,17 @@ def main():
     print(f"You won ${winnings}!")
     if winning_lines:
         print(f"You won on lines: {', '.join(map(str, winning_lines))}")
+
+def main():
+    balance = deposit()
+    while True:
+        print(f"Current balance: ${balance}")
+        spin = input("Press enter to spin (q to quit): ")
+        if spin.lower() == "q":
+            print(f"You left with ${balance}. Thanks for playing!")
+            break
+        if balance <= 0:
+            print("You have run out of money!")
+            break
 
 main()
